@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Rose Day</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    overflow: hidden;
+    cursor: none;
+}
+
+body {
+    height: 100vh;
+    background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffd1dc);
+    font-family: 'Poppins', sans-serif;
+    position: relative;
+}
+
+/* Scattered "full" */
+.background-text span {
+    position: absolute;
+    color: rgba(255,255,255,0.25);
+    font-size: 14px;
+    animation: floatText 20s linear infinite;
+}
+
+@keyframes floatText {
+    from { transform: translateY(0); }
+    to { transform: translateY(-100vh); }
+}
+
+/* Hearts */
+.heart {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: pink;
+    transform: rotate(45deg);
+    animation: floatHeart 9s linear infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    background: pink;
+    border-radius: 50%;
+}
+
+.heart::before { top: -9px; left: 0; }
+.heart::after { left: -9px; top: 0; }
+
+@keyframes floatHeart {
+    0% { transform: translateY(100vh) rotate(45deg); opacity: 1; }
+    100% { transform: translateY(-10vh) rotate(45deg); opacity: 0; }
+}
+
+/* Rose petals */
+.petal {
+    position: absolute;
+    font-size: 22px;
+    animation: fallPetal linear infinite;
+    opacity: 0.8;
+}
+
+@keyframes fallPetal {
+    0% { transform: translateY(-10vh) rotate(0deg); }
+    100% { transform: translateY(110vh) rotate(360deg); }
+}
+
+/* Content */
+.content {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+
+.content h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 70px;
+}
+
+.content p {
+    font-size: 20px;
+    letter-spacing: 2px;
+}
+
+/* Clickable Rose */
+.rose {
+    position: absolute;
+    bottom: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 120px;
+    cursor: pointer;
+    animation: bloom 3s ease-in-out infinite;
+}
+
+@keyframes bloom {
+    0%,100% { transform: translateX(-50%) scale(0.9); }
+    50% { transform: translateX(-50%) scale(1.15); }
+}
+
+/* Popup */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-box {
+    background: #ffd6e8;
+    padding: 40px;
+    border-radius: 22px;
+    text-align: center;
+    max-width: 420px;
+    animation: fadeIn 1s ease;
+}
+
+.popup-box h2 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 36px;
+    color: #b30059;
+}
+
+.popup-box p {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #5c0030;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.close {
+    margin-top: 20px;
+    padding: 10px 25px;
+    border: none;
+    background: #ff5fa2;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+}
+
+/* Sparkle cursor */
+.sparkle {
+    position: fixed;
+    pointer-events: none;
+    font-size: 14px;
+    animation: sparkleFade 1s linear forwards;
+}
+
+@keyframes sparkleFade {
+    from { opacity: 1; transform: scale(1); }
+    to { opacity: 0; transform: scale(2); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background text -->
+<div class="background-text">
+<script>
+for (let i = 0; i < 120; i++) {
+    document.write(`<span style="
+        left:${Math.random()*100}%;
+        top:${Math.random()*100}%;
+        animation-duration:${10+Math.random()*20}s;
+    ">full</span>`);
+}
+</script>
+</div>
+
+<!-- Hearts -->
+<script>
+for (let i = 0; i < 35; i++) {
+    let h = document.createElement("div");
+    h.className = "heart";
+    h.style.left = Math.random()*100 + "vw";
+    h.style.animationDuration = 6 + Math.random()*6 + "s";
+    document.body.appendChild(h);
+}
+</script>
+
+<!-- Rose petals -->
+<script>
+for (let i = 0; i < 25; i++) {
+    let p = document.createElement("div");
+    p.className = "petal";
+    p.innerText = "🌸";
+    p.style.left = Math.random()*100 + "vw";
+    p.style.animationDuration = 8 + Math.random()*7 + "s";
+    p.style.animationDelay = Math.random()*5 + "s";
+    document.body.appendChild(p);
+}
+</script>
+
+<!-- Content -->
+<div class="content">
+    <h1>Happy Rose Day</h1>
+    <p>Click the rose 🌹</p>
+</div>
+
+<!-- Clickable Rose -->
+<div class="rose" onclick="openRose()">🌹</div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+    <div class="popup-box">
+        <h2>I Promise You</h2>
+        <p>
+            In every season of life,<br>
+            I will choose you again and again,<br>
+            without pause, without doubt.
+        </p>
+        <button class="close" onclick="closeRose()">Close</button>
+    </div>
+</div>
+
+<script>
+function openRose() {
+    document.getElementById("popup").style.display = "flex";
+}
+
+function closeRose() {
+    document.getElementById("popup").style.display = "none";
+}
+
+/* Sparkle cursor */
+document.addEventListener("mousemove", e => {
+    let s = document.createElement("div");
+    s.className = "sparkle";
+    s.innerText = "✨";
+    s.style.left = e.clientX + "px";
+    s.style.top = e.clientY + "px";
+    document.body.appendChild(s);
+    setTimeout(() => s.remove(), 1000);
+});
+</script>
+
+</body>
+</html>
